@@ -1,0 +1,126 @@
+{
+  "name": "nuxt-component-meta",
+  "version": "0.18.0",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuxt-content/nuxt-component-meta.git"
+  },
+  "bin": {
+    "nuxt-component-meta": "bin/nuxt-component-meta.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "types": "./dist/types.d.mts"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "types": "./dist/utils.d.mts"
+    },
+    "./parser": {
+      "import": "./dist/parser.mjs",
+      "types": "./dist/parser.d.mts"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue",
+    "nuxt",
+    "vue component",
+    "nuxt component"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:generate": "nuxi generate playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxi prepare playground",
+    "lint": "eslint ",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "verify": "pnpm dev:prepare && pnpm lint && pnpm test",
+    "release": "pnpm test && release-it"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^4.4.8",
+    "citty": "^0.2.2",
+    "defu": "^6.1.7",
+    "jiti": "^2.7.0",
+    "magic-string": "^0.30.21",
+    "mlly": "^1.8.2",
+    "ohash": "^2.0.11",
+    "oxc-parser": "^0.139.0",
+    "oxc-walker": "^1.0.0",
+    "pathe": "^2.0.3",
+    "scule": "^1.3.0",
+    "unplugin": "^2.3.11",
+    "typescript": "^5.9.3",
+    "ufo": "^1.6.4",
+    "vue-component-meta": "^3.3.7"
+  },
+  "devDependencies": {
+    "@iconify/vue": "^5.0.1",
+    "@nuxt/content": "^3.15.0",
+    "@nuxt/eslint-config": "^1.16.0",
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/test-utils": "^4.0.3",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@vitest/ui": "^4.1.10",
+    "ajv": "^8.20.0",
+    "changelogen": "^0.6.2",
+    "eslint": "^10.7.0",
+    "json-schema-to-zod": "^2.8.1",
+    "nuxt": "^4.4.8",
+    "release-it": "^20.2.1",
+    "vitest": "^4.1.10",
+    "vue": "^3.5.39"
+  },
+  "build": {
+    "entries": [
+      {
+        "input": "./src/utils/index.ts",
+        "name": "utils"
+      },
+      {
+        "input": "./src/parser/index.ts",
+        "name": "parser"
+      },
+      {
+        "input": "./src/cli/index.ts",
+        "name": "cli"
+      }
+    ],
+    "externals": [
+      "#nuxt-component-meta",
+      "ufo",
+      "pathe",
+      "defu",
+      "unplugin",
+      "consola",
+      "acorn",
+      "jiti",
+      "magic-string",
+      "mlly",
+      "oxc-parser",
+      "oxc-walker",
+      "pkg-types",
+      "jsonc-parser"
+    ]
+  },
+  "packageManager": "pnpm@11.11.0",
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
+    }
+  }
+}
